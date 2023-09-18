@@ -7,14 +7,14 @@ function Converter() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('');
-  const [selectedFeature, setSelectedFeature] = useState(null);
+  const [selectedFeature, setSelectedFeature] = useState('convert');
 
   const handleConversion = async () => {
     try {
       setLoading(true); // Start loading
       if (selectedFeature === 'convert') {
         // Handle code conversion logic here
-        const response = await axios.post('https://code-converter-tf1h.onrender.com/convert', {
+        const response = await axios.post('https://code-genius-jf9d.onrender.com/convert', {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -22,7 +22,7 @@ function Converter() {
         });
         setOutput(response.data.convertedCode);
       } else if (selectedFeature === 'debug') {
-        const response = await axios.post('http://localhost:3001/debug', {
+        const response = await axios.post('https://code-genius-jf9d.onrender.com/debug', {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -30,7 +30,7 @@ function Converter() {
         });
         setOutput(response.data.convertedCode);
       } else if (selectedFeature === 'qualityCheck') {
-        const response = await axios.post('http://localhost:3001/qualityCheck', {
+        const response = await axios.post('https://code-genius-jf9d.onrender.com/qualityCheck', {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -52,9 +52,9 @@ function Converter() {
           <div>
           <textarea placeholder="Write your code here..." value={input} onChange={(e) => setInput(e.target.value)} />
           </div>
-          <div className="btn">
-          <select value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
-            <option value="">Select a language</option>
+          <div className="btn1">
+          <select className='button-30' value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
+            <option value="">Language</option>
             <option value="Java">Java</option>
             <option value="JavaScript">JavaScript</option>
             <option value="Python">Python</option>
